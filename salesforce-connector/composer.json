@@ -1,0 +1,52 @@
+{
+    "name": "magement/unit4-connector",
+    "description": "Magement Unit 4 Connector.",
+    "type": "library",
+    "license": "proprietary",
+    "prefer-stable": true,
+    "minimum-stability": "RC",
+    "authors": [
+        {
+            "name": "MediaCT B.V.",
+            "email": "contact@mediact.nl"
+        }
+    ],
+    "repositories": {
+        "mediact": {
+            "type": "composer",
+            "url": "https://composer.mediact.nl"
+        }
+    },
+    "require": {
+        "php": "^7.3",
+        "ext-json": "*",
+        "magement/http-connector": "^2.0@RC",
+        "magement/storage-connector": "^1.0@RC",
+        "magement/schema-org-standard-entity": "^2.0@RC"
+    },
+    "require-dev": {
+        "mediact/testing-suite": "@stable",
+        "mediact/dependency-guard": "@stable"
+    },
+    "archive": {
+        "exclude": [
+            "/tests",
+            "/.gitignore",
+            "/bitbucket-pipelines.yml",
+            "/phpstan.neon",
+            "/phpcs.xml",
+            "/phpmd.xml",
+            "/phpunit.xml",
+            "/grumphp.yml",
+            "/pdepend.xml"
+        ]
+    },
+    "extra": {
+        "grumphp": {
+            "config-default-path": "vendor/mediact/testing-suite/config/default/grumphp.yml"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
