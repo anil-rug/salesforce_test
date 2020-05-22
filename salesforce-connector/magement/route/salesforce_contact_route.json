@@ -1,0 +1,21 @@
+{
+  "$schema": "https://di.schema.mediact.com/register.configuration.json",
+  "type": "route-configuration",
+  "identifier": "salesforce_contact_route",
+  "name": "Salesforce Contact Route",
+  "object": {
+    "parameters": {
+      "outgoing": "salesforce-contact-publisher",
+      "incoming": "salesforce-contact-subscriber",
+      "transformers":[
+        {
+          "prototype":"brancher",
+          "parameters":{
+            "pattern":"records.*"
+          }
+        },
+        "salesforce_transform"
+      ]
+    }
+  }
+}

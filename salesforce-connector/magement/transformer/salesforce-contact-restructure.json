@@ -1,0 +1,102 @@
+{
+  "$schema": "https://di.schema.mediact.com/register.configuration.json",
+  "type": "list-transformer",
+  "identifier": "salesforce-contact-restructure",
+  "name": "Salesforce contact restructure",
+  "object": {
+    "prototype": "data",
+    "parameters": {
+      "transformers":[
+        {
+          "prototype":"key-filter",
+          "parameters":{
+            "accessor":{
+              "prototype":"key",
+              "parameters":{
+                "keys":[
+                  "attributes",
+                  "Id",
+                  "Name"
+                ]
+              }
+            },
+            "conditions":[
+
+            ]
+          }
+        },
+        {
+          "prototype":"value-filter",
+          "parameters":{
+            "accessor":{
+              "prototype":"key",
+              "parameters":[
+
+              ]
+            },
+            "conditions":[
+              {
+                "prototype":"equals",
+                "parameters":[
+
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "prototype":"value-mapper",
+          "parameters":{
+            "mappers":[
+              {
+                "prototype":"string-append",
+                "parameters":{
+                  "append":"_Test"
+                }
+              }
+            ],
+            "accessor":{
+              "prototype":"key",
+              "parameters":{
+                "keys":[
+                  "Name"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "prototype":"value-mapper",
+          "parameters":{
+            "mappers":[
+              {
+                "prototype":"string-prepend",
+                "parameters":{
+                  "prepend":"test_"
+                }
+              }
+            ],
+            "accessor":{
+              "prototype":"key",
+              "parameters":{
+                "keys":[
+                  "Email"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "prototype":"pattern-move",
+          "parameters":{
+            "pattern":"*",
+            "conditions":[
+
+            ],
+            "replacement":"payload.$1"
+          }
+        }
+      ]
+    }
+  }
+}

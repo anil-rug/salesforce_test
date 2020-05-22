@@ -1,0 +1,23 @@
+{
+  "$schema": "https://di.schema.mediact.com/register.configuration.json",
+  "type": "outgoing-configuration",
+  "identifier": "salesforce-contact-publisher",
+  "name": "Salesforce Contact Publisher",
+  "object": {
+    "parameters": {
+      "publisher": {
+        "prototype": "http-publisher",
+        "parameters": {
+          "client": "salesforce-api",
+          "request": {
+            "uri": "/services/data/v48.0/sobjects/Contact",
+            "method":"post",
+            "payload":"&{payload}"
+          }
+        }
+      },
+      "transformers": [
+      ]
+    }
+  }
+}

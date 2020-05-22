@@ -1,0 +1,69 @@
+{
+  "$schema": "https://di.schema.mediact.com/register.configuration.json",
+  "type": "http-client",
+  "identifier": "salesforce-api",
+  "name": "Salesforce HTTP Client",
+  "object": {
+    "parameters": {
+      "ssl": {
+        "ssl_enable_npn": false,
+        "ssl_verifypeer": false,
+        "ssl_enable_alpn": false,
+        "ssl_verifystatus": false
+      },
+      "proxy": {
+        "proxytype": 0,
+        "httpproxytunnel": false
+      },
+      "plugins": [
+        {
+          "prototype": "base-uri",
+          "parameters": {
+            "uri": {
+              "parameters": "https://eu31.salesforce.com/"
+            },
+            "options": {
+              "replace": false
+            }
+          }
+        },
+        {
+          "prototype": "header-set",
+          "parameters": {
+            "headers": {
+              "Content-Type": "application/json"
+            }
+          }
+        }
+      ],
+      "connection": {
+        "timeout": 0,
+        "forbid_reuse": false,
+        "tcp_fastopen": false,
+        "fresh_connect": false,
+        "connecttimeout": 0
+      },
+      "development": {
+        "verbose": false
+      },
+      "authentications": [
+        {
+          "prototype": "oauth2",
+          "parameters": {
+            "uri": "/services/oauth2/token",
+            "body": {
+              "client_id": "${SALESFORCE_CLIENT_ID}",
+              "grant_type": "password",
+              "client_secret": "${SALESFORCE_CLIENT_SECRET}",
+              "password": "${SALESFORCE_PASSWORD}",
+              "username": "${SALESFORCE_USERNAME}",
+              "redirect_uri": "https://login.salesforce.com/services/oauth2/success"
+            },
+            "client": "salesforce-authentication",
+            "storage": "salesforce-token-cache"
+          }
+        }
+      ]
+    }
+  }
+}

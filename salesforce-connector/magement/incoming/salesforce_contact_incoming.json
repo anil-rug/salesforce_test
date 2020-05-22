@@ -1,0 +1,21 @@
+{
+  "$schema": "https://di.schema.mediact.com/register.configuration.json",
+  "type": "incoming-configuration",
+  "identifier": "salesforce-contact-subscriber",
+  "name": "Salesforce contact subscriber",
+  "object": {
+    "parameters": {
+      "subscriber": {
+        "prototype": "http-subscriber",
+        "parameters": {
+          "client": "salesforce-api",
+          "request": {
+            "uri": "/services/data/v48.0/query?q=SELECT Id,Name,FirstName,LastName,Title,Email, Phone FROM Contact",
+            "method": "get",
+            "payload": "&{[]}"
+          }
+        }
+      }
+    }
+  }
+}
